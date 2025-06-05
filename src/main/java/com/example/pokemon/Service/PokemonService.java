@@ -2,6 +2,10 @@ package com.example.pokemon.Service;
 
 import com.example.pokemon.domain.Jogador;
 import com.example.pokemon.domain.Pokemon;
+import com.example.pokemon.dto.PokemonDTO;
+import com.example.pokemon.dto.PokemonEscolhaDTO;
+import com.example.pokemon.dto.PokemonSelecionadoDTO;
+import com.example.pokemon.exceptions.JogadorNotFoundException;
 import com.example.pokemon.repository.JogadorRepository;
 import com.example.pokemon.repository.PokemonRepository;
 import org.springframework.beans.BeanUtils;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service

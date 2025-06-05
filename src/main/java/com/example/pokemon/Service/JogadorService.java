@@ -1,6 +1,10 @@
 package com.example.pokemon.Service;
 
 import com.example.pokemon.domain.Jogador;
+import com.example.pokemon.dto.JogadorCadastroDTO;
+import com.example.pokemon.dto.JogadorDTO;
+import com.example.pokemon.exceptions.JogadorDuplicadoException;
+import com.example.pokemon.exceptions.JogadorNotFoundException;
 import com.example.pokemon.repository.JogadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,7 +46,7 @@ public class JogadorService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {Add commentMore actions
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return jogadorRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado!."));
     }
 }

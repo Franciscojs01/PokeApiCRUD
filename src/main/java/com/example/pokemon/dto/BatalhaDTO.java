@@ -4,16 +4,18 @@ import com.example.pokemon.domain.EstadoBatalha;
 
 import java.time.LocalDate;
 
+
 public class BatalhaDTO {
     private JogadorBatalhaDTO jogador1;
     private JogadorBatalhaDTO jogador2;
-    private LocalDate data_batalha;
+    private LocalDate dataBatalha;
     private EstadoBatalha estadoBatalha;
 
-    public BatalhaDTO(JogadorBatalhaDTO jogador1, JogadorBatalhaDTO jogador2, LocalDate data_batalha, EstadoBatalha estadoBatalha) {
+
+    public BatalhaDTO(JogadorBatalhaDTO jogador1, JogadorBatalhaDTO jogador2, LocalDate dataBatalha, EstadoBatalha estadoBatalha) {
         this.jogador1 = jogador1;
         this.jogador2 = jogador2;
-        this.data_batalha = data_batalha;
+        this.dataBatalha = dataBatalha;
         this.estadoBatalha = estadoBatalha;
     }
 
@@ -33,12 +35,12 @@ public class BatalhaDTO {
         this.jogador2 = jogador2;
     }
 
-    public LocalDate getData_batalha() {
-        return data_batalha;
+    public LocalDate getDataBatalha() {
+        return dataBatalha;
     }
 
-    public void setData_batalha(LocalDate data_batalha) {
-        this.data_batalha = data_batalha;
+    public void setDataBatalha(LocalDate dataBatalha) {
+        this.dataBatalha = dataBatalha;
     }
 
     public EstadoBatalha getEstadoBatalha() {

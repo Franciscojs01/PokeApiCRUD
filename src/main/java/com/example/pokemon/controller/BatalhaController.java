@@ -1,9 +1,10 @@
 package com.example.pokemon.controller;
 
-import org.example.Domain.Batalha;
-import org.example.dto.BatalhaDTO;
-import org.example.dto.BatalhaVencedorDTO;
-import org.example.Service.BatalhaService;
+import com.example.pokemon.Service.BatalhaService;
+import com.example.pokemon.domain.Batalha;
+import com.example.pokemon.dto.BatalhaCadastroDTO;
+import com.example.pokemon.dto.BatalhaDTO;
+import com.example.pokemon.dto.BatalhaVencedorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,15 @@ public class BatalhaController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<String> cadastrarBatalha(@PathVariable Long id, @RequestBody Batalha batalha) {
-        batalhaService.cadastrarBatalha(batalha, id);
+    public ResponseEntity<String> cadastrarBatalha(@RequestBody BatalhaCadastroDTO batalha) {
+        batalhaService.cadastrarBatalha(batalha);
         return ResponseEntity.status(HttpStatus.CREATED).body("Batalha cadastrada com sucesso!");
+    }
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<BatalhaDTO> editarBatalha(@PathVariable Long id, @RequestBody BatalhaCadastroDTO batalha) {
+        BatalhaDTO batalhaAtualizada = batalhaService.editarBatalha(id, batalha.getEstado());
+        return ResponseEntity.ok().body(batalhaAtualizada);
     }
 
     @GetMapping("/iniciada/{id}")
@@ -34,7 +41,7 @@ public class BatalhaController {
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarBatalha(@PathVariable Long id) {
-        batalhaService.deletarBatalha(id);Add commentMore actions
+        batalhaService.deletarBatalha(id);
         return ResponseEntity.ok().body("Batalha deletada com sucesso!");
     }
 

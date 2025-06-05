@@ -112,6 +112,6 @@ public class Jogador implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();Add commentMore actions
+        return UserDetails.super.isEnabled();
     }
 }

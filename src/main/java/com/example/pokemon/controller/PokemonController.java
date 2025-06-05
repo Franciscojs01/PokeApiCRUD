@@ -1,9 +1,9 @@
 package com.example.pokemon.controller;
 
-import org.example.dto.PokemonDTO;Add commentMore actions
-import org.example.Service.PokemonService;
-import org.example.dto.PokemonEscolhaDTO;
-import org.example.dto.PokemonSelecionadoDTO;
+
+import com.example.pokemon.Service.PokemonService;
+import com.example.pokemon.dto.PokemonEscolhaDTO;
+import com.example.pokemon.dto.PokemonSelecionadoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class PokemonController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<String> cadastrarEscolhidos(@RequestBody PokemonSelecionadoDTO dto) {
-        pokemonService.cadastrarPokemonsEscolhidos(dto);Add commentMore actions
+        pokemonService.cadastrarPokemonsEscolhidos(dto);
         return ResponseEntity.ok("Pokémons cadastrados com sucesso!");
     }
 }

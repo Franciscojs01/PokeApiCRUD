@@ -1,6 +1,7 @@
 package com.example.pokemon.Service;
 
 import com.example.pokemon.PokeApiResponse.PokemonResponse;
+import com.example.pokemon.dto.PokemonDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
