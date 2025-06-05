@@ -17,6 +17,8 @@ public class PokemonDTO {
         this.defesa = defesa;
     }
 
+    public PokemonDTO() {}
+
     public String getNome() {
         return nome;
     }

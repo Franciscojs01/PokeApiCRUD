@@ -69,7 +69,7 @@ public class Batalha {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDate dataCriacao) {Add commentMore actions
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 }

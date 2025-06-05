@@ -28,11 +28,11 @@ public class PokemonService {
     @Autowired
     private JogadorRepository jogadorRepository;
 
-    public List<PokemonEscolhaDTO> gerarPokemonsParaEscolha() {
-        List<PokemonEscolhaDTO> pokemonsEscolha = new ArrayList<>();
+    public List<PokemonDTO> gerarPokemonsParaEscolha() {
+        List<PokemonDTO> pokemonsEscolha = new ArrayList<>();
 
         while (pokemonsEscolha.size() < 8) {
-            int randomPokemonId = random.nextInt(898) + 1;
+            int randomPokemonId = random.nextInt(898) + 1; // ID aleatório entre 1 e 898
             PokemonDTO response = pokeApiService.getPokemonNome(String.valueOf(randomPokemonId));
 
             boolean pokemonJaExiste = pokemonsEscolha.stream()
@@ -40,19 +40,21 @@ public class PokemonService {
             if (pokemonJaExiste) {
                 continue;
             }
-            PokemonEscolhaDTO pokemonEscolhaDTO = new PokemonEscolhaDTO();
-            pokemonEscolhaDTO.setNome(response.getNome());
-            pokemonEscolhaDTO.setTipo(response.getTipo());
-            pokemonEscolhaDTO.setNivel(random.nextInt(50) + 1);
-            pokemonEscolhaDTO.setHp(random.nextInt(100) + 50);
-            pokemonEscolhaDTO.setAtaque(random.nextInt(50) + 10);
-            pokemonEscolhaDTO.setDefesa(random.nextInt(40) + 5);
 
-            pokemonsEscolha.add(pokemonEscolhaDTO);
+            PokemonDTO pokemonDTO = new PokemonDTO();
+            pokemonDTO.setNome(response.getNome());
+            pokemonDTO.setTipo(response.getTipo());
+            pokemonDTO.setNivel(random.nextInt(50) + 1);
+            pokemonDTO.setHp(random.nextInt(100) + 50);
+            pokemonDTO.setAtaque(random.nextInt(50) + 10);
+            pokemonDTO.setDefesa(random.nextInt(40) + 5);
+
+            pokemonsEscolha.add(pokemonDTO);
         }
 
         return pokemonsEscolha;
     }
+
 
     public void cadastrarPokemonsEscolhidos(PokemonSelecionadoDTO dto) {
         if (dto.getPokemonEscolhidos().size() != 2) {

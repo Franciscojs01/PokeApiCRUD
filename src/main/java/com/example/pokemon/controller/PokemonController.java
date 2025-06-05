@@ -2,6 +2,7 @@ package com.example.pokemon.controller;
 
 
 import com.example.pokemon.Service.PokemonService;
+import com.example.pokemon.dto.PokemonDTO;
 import com.example.pokemon.dto.PokemonEscolhaDTO;
 import com.example.pokemon.dto.PokemonSelecionadoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class PokemonController {
     private PokemonService pokemonService;
 
     @GetMapping("/sorteio")
-    public List<PokemonEscolhaDTO> sortearPokemons() {
+    public List<PokemonDTO> sortearPokemons() {
         return pokemonService.gerarPokemonsParaEscolha();
     }
 
