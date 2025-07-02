@@ -50,6 +50,8 @@ public class BatalhaService {
                 batalha.getDataCadastro()
         );
 
+        batalhaRepository.save(novaBatalha);
+
         JogadorBatalhaDTO jogador1DTO = montarJogadorDTO(jogador);
         JogadorBatalhaDTO jogador2DTO = montarJogadorDTO(jogador2);
 
@@ -112,6 +114,9 @@ public class BatalhaService {
             vencedor = "Empate";
         }
 
+        batalha.setEstado(EstadoBatalha.FINALIZADA);
+        batalhaRepository.save(batalha);
+
         return new BatalhaVencedorDTO(vencedor);
     }
 
@@ -144,7 +149,9 @@ public class BatalhaService {
 
         while (hp1 > 0 && hp2 > 0) {
             hp2 -= dano1;
-            if (hp2 <= 0) break;
+            if (hp2 <= 0) {
+                break;
+            }
 
             hp1 -= dano2;
         }

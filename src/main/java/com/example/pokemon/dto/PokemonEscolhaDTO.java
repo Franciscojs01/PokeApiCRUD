@@ -2,6 +2,7 @@ package com.example.pokemon.dto;
 
 public class PokemonEscolhaDTO {
     private Long jogadorId;
+    private Long pokemonId;
     private String nome;
     private String tipo;
     private int nivel;
@@ -9,7 +10,7 @@ public class PokemonEscolhaDTO {
     private int ataque;
     private int defesa;
 
-    public PokemonEscolhaDTO(Long jogadorId, String nome, String tipo, int nivel, int hp, int ataque, int defesa) {
+    public PokemonEscolhaDTO(Long jogadorId, Long pokemonId, String nome, String tipo, int nivel, int hp, int ataque, int defesa) {
         this.jogadorId = jogadorId;
         this.nome = nome;
         this.tipo = tipo;
@@ -29,6 +30,14 @@ public class PokemonEscolhaDTO {
 
     public void setJogadorId(Long jogadorId) {
         this.jogadorId = jogadorId;
+    }
+
+    public Long getPokemonId() {
+        return pokemonId;
+    }
+
+    public void setPokemonId(Long pokemonId) {
+        this.pokemonId = pokemonId;
     }
 
     public String getNome() {

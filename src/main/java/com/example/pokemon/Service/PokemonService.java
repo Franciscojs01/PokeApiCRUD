@@ -28,11 +28,11 @@ public class PokemonService {
     @Autowired
     private JogadorRepository jogadorRepository;
 
-    public List<PokemonDTO> gerarPokemonsParaEscolha() {
-        List<PokemonDTO> pokemonsEscolha = new ArrayList<>();
+    public List<Pokemon> gerarPokemonsParaEscolha() {
+        List<Pokemon> pokemonsEscolha = new ArrayList<>();
 
         while (pokemonsEscolha.size() < 8) {
-            int randomPokemonId = random.nextInt(898) + 1; // ID aleatório entre 1 e 898
+            int randomPokemonId = random.nextInt(898) + 1;
             PokemonDTO response = pokeApiService.getPokemonNome(String.valueOf(randomPokemonId));
 
             boolean pokemonJaExiste = pokemonsEscolha.stream()
@@ -41,15 +41,17 @@ public class PokemonService {
                 continue;
             }
 
-            PokemonDTO pokemonDTO = new PokemonDTO();
-            pokemonDTO.setNome(response.getNome());
-            pokemonDTO.setTipo(response.getTipo());
-            pokemonDTO.setNivel(random.nextInt(50) + 1);
-            pokemonDTO.setHp(random.nextInt(100) + 50);
-            pokemonDTO.setAtaque(random.nextInt(50) + 10);
-            pokemonDTO.setDefesa(random.nextInt(40) + 5);
+            Pokemon pokemon = new Pokemon();
+            pokemon.setNome(response.getNome());
+            pokemon.setTipo(response.getTipo());
+            pokemon.setNivel(random.nextInt(50) + 1);
+            pokemon.setHp(random.nextInt(100) + 50);
+            pokemon.setAtaque(random.nextInt(50) + 10);
+            pokemon.setDefesa(random.nextInt(40) + 5);
 
-            pokemonsEscolha.add(pokemonDTO);
+
+            pokemonsEscolha.add(pokemon);
+            pokemonRepository.save(pokemon);
         }
 
         return pokemonsEscolha;
@@ -63,7 +65,7 @@ public class PokemonService {
 
         for (PokemonEscolhaDTO escolhido : dto.getPokemonEscolhidos()) {
             Long jogadorId = escolhido.getJogadorId();
-
+            Long pokemonId = escolhido.getPokemonId();
             Jogador jogador = jogadorRepository.findById(jogadorId)
                     .orElseThrow(() -> new JogadorNotFoundException("Jogador com ID " + jogadorId + "não existe."));
 
@@ -72,8 +74,15 @@ public class PokemonService {
                 throw new IllegalArgumentException("Jogador com ID " + jogadorId + " já possuí dois pokémon");
             }
 
-            Pokemon pokemon = new Pokemon();
-            BeanUtils.copyProperties(escolhido, pokemon);
+            Pokemon pokemon = pokemonRepository.findById(pokemonId)
+                    .orElseThrow(() -> new IllegalArgumentException("Pokemon com esse " + pokemonId + " Não foi encontrado."));
+
+            if (pokemon.getJogadorId() != null) {
+                throw new IllegalArgumentException("O pokemon com esse " + pokemonId + " Já foi escolhido.");
+            }
+
+//            Pokemon pokemon = new Pokemon();
+//            BeanUtils.copyProperties(escolhido, pokemon);
             pokemon.setJogadorId(jogador);
             pokemonRepository.save(pokemon);
         }

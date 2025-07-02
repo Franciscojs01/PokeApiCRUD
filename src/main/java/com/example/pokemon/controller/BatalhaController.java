@@ -1,7 +1,6 @@
 package com.example.pokemon.controller;
 
 import com.example.pokemon.Service.BatalhaService;
-import com.example.pokemon.domain.Batalha;
 import com.example.pokemon.dto.BatalhaCadastroDTO;
 import com.example.pokemon.dto.BatalhaDTO;
 import com.example.pokemon.dto.BatalhaVencedorDTO;
@@ -34,7 +33,7 @@ public class BatalhaController {
         return ResponseEntity.ok().body(batalhaAtualizada);
     }
 
-    @GetMapping("/iniciada/{id}")
+    @GetMapping("/vencedor/{id}")
     public ResponseEntity<BatalhaVencedorDTO> iniciarBatalha(@PathVariable Long id) {
         return ResponseEntity.ok().body(batalhaService.getBatalhaVencedor(id));
     }
